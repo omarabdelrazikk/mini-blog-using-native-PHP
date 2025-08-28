@@ -36,6 +36,9 @@ session_start();
                 style="color: white; font-weight: bold; font-size: 16px; font-family: Arial, sans-serif; background-color: blue;  border: none;  border-radius: 8px; padding: 5px 20px;">
             <input type="reset" value="Cancel"
                 style="margin-left: 10px; color: white; font-weight: bold; font-size: 16px; font-family: Arial, sans-serif; background-color: brown; border: none; border-radius: 8px; padding: 5px 20px;">
+             <a href="./register.php" style="margin-left: 10px; color: white; font-weight: bold; font-size: 16px; font-family: Arial, sans-serif; background-color: green; border: none; border-radius: 8px; padding: 5px 20px; text-decoration: none;">
+                 Register
+             </a>
         </form>
     </div>
     <script src="./scripts/Reg.js"></script>
@@ -48,18 +51,23 @@ session_start();
 if (isset($_POST['usernamemail']) && isset($_POST['password'])) {
     $usernamemail = $_POST["usernamemail"];
     $password = $_POST["password"];
-    $stmt = $conn->prepare("SELECT userid, username, password FROM users WHERE username = ? OR email = ?");
+    $stmt = $conn->prepare("SELECT userid, username, password ,isadmin FROM users WHERE username = ? OR email = ?");
     $stmt->bind_param("ss", $usernamemail, $usernamemail);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result && mysqli_num_rows($result) > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
-            
+
             $_SESSION['userid'] = $row['userid'];
             $_SESSION['username'] = $row['username'];
+            if ($row['isadmin'] == 1) {
+                header("Location: ./admins.php");
+                $_SESSION['isadmin'] = true;
+            } else {
+                header("Location: ./homee.php");
+            }
 
-            header("Location: ./homee.php");
             exit();
         } else {
             echo "Incorrect password.";

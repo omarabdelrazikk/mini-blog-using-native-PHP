@@ -1,0 +1,21 @@
+#container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#container table td {
+    text-align: center;
+}
+
+#container table td a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007BFF;
+   
+}
