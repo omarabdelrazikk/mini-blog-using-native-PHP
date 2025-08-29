@@ -7,5 +7,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: homee.php");
     exit();
 }
-
-        mysqli_close($conn);
+mysqli_close($conn);

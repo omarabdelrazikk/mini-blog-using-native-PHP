@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <link rel="stylesheet" href="./styles/post.css">
     <h1>Add Post</h1>
     <form action="" method="POST">
         <textarea name="content" rows="5" cols="40" placeholder="What's on your mind?"></textarea><br>

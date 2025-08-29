@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
+    background-color: #edf4f7;
+    margin: 10px;
     padding: 0;
 }
 
@@ -12,13 +12,13 @@ h1 {
 }
 
 table {
-    width: 80%;
-    margin: 20px auto;
+    width: 100%;
+    margin: 10px auto;
     border-collapse: collapse;
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 10px 12px;
     border: 1px solid #ddd;
     text-align: left;
 }
@@ -34,14 +34,14 @@ form {
 }
 
 input[type="text"] {
-    padding: 10px;
-    margin: 5px 0;
+    padding: 8px 0px;
+    margin: 2px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 button {
-    padding: 10px 15px;
+    padding: 8px 12px;
     background-color: #5cb85c;
     color: white;
     border: none;
@@ -62,4 +62,8 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.comment-form {
+    margin-top: 5px;
 }
