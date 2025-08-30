@@ -42,10 +42,24 @@ session_start();
                     JOIN users ON posts.userid = users.userid;";
             $result = mysqli_query($conn, $sql);
 
-            while ($row = mysqli_fetch_assoc($result)) { ?>
+            while ($row = mysqli_fetch_assoc($result)) {
+                $_SESSION['postt'] = $row['postid'] + 1;
+                ?>
                 <tr>
                     <td><?php echo $row['username']; ?></td>
-                    <td><?php echo $row['content']; ?></td>
+                    <td><?php echo $row['content']; ?> <br>
+                        <?php
+                        $files = glob("upload/*.*");
+                        for ($i = 0; $i < count($files); $i++) {
+                            $image = $files[$i];
+                            $name = explode(".", explode("/", $image)[1])[0];
+                           if (((int) $name) == $row['postid'] ) {
+                            echo '<img src="' . $image . '" alt="Random image" width="50" />' . "<br /><br />";
+                           }
+                        }
+                        ?>
+                    </td>
+
                     <td><?php echo $row['numberoflikes']; ?></td>
                     <td>
                         <form action='comment_post.php' method='POST'>
@@ -54,15 +68,15 @@ session_start();
                             <button type='submit'>Comment</button>
                         </form>
 
-                </td>
-                <td>
-                    <form class="like-form" action="like_post.php" method="POST">
-                        <input type="hidden" name="post_id" value="<?php echo $row['postid']; ?>">
-                        <button type="submit" class="like">Like 👍</button>
-                    </form>
+                    </td>
+                    <td>
+                        <form class="like-form" action="like_post.php" method="POST">
+                            <input type="hidden" name="post_id" value="<?php echo $row['postid']; ?>">
+                            <button type="submit" class="like">Like 👍</button>
+                        </form>
 
-                </td>
-                                <tr>
+                    </td>
+                <tr>
                     <?php
                     $postid = $row['postid'];
                     $sql2 = "SELECT comments.*, users.username 

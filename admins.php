@@ -57,7 +57,7 @@ if (!isset($_SESSION['userid']) || $_SESSION['isadmin'] !== true) {
         </table>
 
     </div>
-    <a href="logout.php" style=" text-decoration: none; text-align: center; color: brown; margin-left: 870px; height: max-content;">
+    <a href="logout.php" style=" text-decoration: none; text-align: center; color: brown; margin-left: 650px; height: max-content;">
         Logout
     </a>
 </body>
